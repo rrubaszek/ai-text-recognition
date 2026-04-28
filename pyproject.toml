@@ -1,0 +1,23 @@
+[project]
+name = "ai-text-recognition"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "numpy>=2.4.4",
+    "pandas>=3.0.2",
+    "pl-core-news-sm",
+    "scikit-learn>=1.8.0",
+    "spacy>=3.8.13",
+    "xgboost>=3.2.0",
+]
+
+[tool.uv.sources]
+pl-core-news-sm = { path = "wheels/pl_core_news_sm-3.8.0-py3-none-any.whl" }
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

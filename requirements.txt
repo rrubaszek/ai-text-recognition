@@ -1,0 +1,5 @@
+spacy
+numpy
+pandas
+scikit-learn
+xgboost
