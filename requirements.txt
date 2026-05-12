@@ -3,3 +3,6 @@ numpy
 pandas
 scikit-learn
 xgboost
+networkx
+ts2vg
+lightgbm

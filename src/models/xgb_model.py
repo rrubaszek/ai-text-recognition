@@ -9,8 +9,8 @@ from utils.paths import STYLOMETRY_DATASET_DIR
 
 def main():
     df = pd.read_csv(STYLOMETRY_DATASET_DIR / "dataset.csv")
-
-    X = df.drop(columns=["label"]).values
+    # Zabezpieczenie wyrzucające metadane przed podaniem macierzy do modelu
+    X = df.drop(columns=["label", "domain", "generator"], errors='ignore').values
     y = df["label"].values
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -22,13 +22,14 @@ def main():
     )
 
     model = XGBClassifier(
-        n_estimators=300,
-        max_depth=6,
-        learning_rate=0.05,
-        subsample=0.8,
-        colsample_bytree=0.8,
+        n_estimators=400,
+        max_depth=7,  # Średnia głębokość do wyłapania interakcji nieliniowych
+        learning_rate=0.03,  # Wolniejsza, ale precyzyjniejsza nauka
+        subsample=0.8,  # Zabezpieczenie przed przeuczeniem
+        colsample_bytree=0.9,    # Używamy prawie wszystkich cech w każdym drzewie (mamy ich tylko 37)
         eval_metric="logloss",
-        tree_method="hist"
+        tree_method="hist",
+        random_state=42
     )
 
     model.fit(X_train, y_train)
