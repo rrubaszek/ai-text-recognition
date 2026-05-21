@@ -22,7 +22,7 @@ def main():
             model_name="pl_core_news_lg",
             use_lemma=True,
             remove_stopwords=False,
-            remove_punct=True
+            remove_punct=False
         )),
         ("features", feature_pipeline),
         ("safe_cast", SafeFeatures())
@@ -40,19 +40,20 @@ def main():
 
     # lista cech
     feature_names = [
-        # Shallow stylometry (18 cech)
+        # Pillar 1: Shallow Stylometrics (17 cech)
         "Token_Count", "Char_Length", "Comma_Ratio", "Dot_Ratio", "Avg_Sent_Len", "Var_Sent_Len",
-        "TTR", "HLR", "Entropy", "Avg_Word_Len", "Var_Word_Len",
-        "Yules_K", "MTLD",
+        "TTR", "HLR", "Entropy", "Avg_Word_Len", "Var_Word_Len", "Yules_K",
         "Noun_Ratio", "Verb_Ratio", "Adj_Ratio", "Avg_Dep_Depth", "Max_Dep_Depth",
 
-        # Macroscopic Frequency Errors (6 cech)
+        # Pillar 2: Macroscopic Frequency Errors (6 cech)
         "Zipf_MAPE", "Zipf_Correlation", "Zipf_Slope", "Zipf_Residual_Var", "Zipf_KS_Stat", "Metric_R",
 
-        # Nonlinear Dynamics (9 cech)
+        # Pillar 3: Nonlinear Dynamics (14 cech)
         "Taylor_b",
         "RQA_Recurrence_Rate", "RQA_Determinism", "RQA_Entropy", "RQA_Laminarity",
-        "NVG_Avg_Degree", "NVG_Clustering", "NVG_Avg_Path_Length", "NVG_Graph_Entropy"
+        "CRQA_Recurrence_Rate", "CRQA_Determinism", "CRQA_Entropy", "CRQA_Laminarity",
+        "NVG_Avg_Degree", "NVG_Clustering", "NVG_Avg_Path_Length", "NVG_Graph_Entropy",
+        "MSE_Entropy_Variance"
     ]
 
     with open(output_file, mode="w", newline="", encoding="utf-8") as f:
