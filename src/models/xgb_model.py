@@ -1,3 +1,4 @@
+
 import pandas as pd
 import numpy as np
 
@@ -5,12 +6,13 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
 from xgboost import XGBClassifier
 
+from explainability.shap_analysis import shap_analysis_tree
 from utils.paths import STYLOMETRY_DATASET_DIR
 
 def main():
     df = pd.read_csv(STYLOMETRY_DATASET_DIR / "dataset.csv")
     # Zabezpieczenie wyrzucające metadane przed podaniem macierzy do modelu
-    X = df.drop(columns=["label", "domain", "generator"], errors='ignore').values
+    X = df.drop(columns=["label", "domain", "generator"], errors='ignore')
     y = df["label"].values
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -42,6 +44,7 @@ def main():
     print("Classification report:")
     print(classification_report(y_test, y_pred))
 
+    shap_analysis_tree(model, X_train)
 
 if __name__ == "__main__":
     main()
