@@ -24,11 +24,19 @@ def main():
     )
 
     model = XGBClassifier(
-        n_estimators=400,
-        max_depth=7,  # Średnia głębokość do wyłapania interakcji nieliniowych
-        learning_rate=0.03,  # Wolniejsza, ale precyzyjniejsza nauka
-        subsample=0.8,  # Zabezpieczenie przed przeuczeniem
-        colsample_bytree=0.9,    # Używamy prawie wszystkich cech w każdym drzewie (mamy ich tylko 37)
+        n_estimators=1292,
+        learning_rate=0.011540,
+        max_depth=12,
+        min_child_weight=5,
+        subsample=0.586369,
+        colsample_bytree=0.889294,
+        gamma=1.305129,
+        reg_lambda=3.997312,
+        #n_estimators=400,
+        #max_depth=7,  # Średnia głębokość do wyłapania interakcji nieliniowych
+        #learning_rate=0.03,  # Wolniejsza, ale precyzyjniejsza nauka
+        #subsample=0.8,  # Zabezpieczenie przed przeuczeniem
+        #colsample_bytree=0.9,    # Używamy prawie wszystkich cech w każdym drzewie (mamy ich tylko 37)
         eval_metric="logloss",
         tree_method="hist",
         random_state=42
