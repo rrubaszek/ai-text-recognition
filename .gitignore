@@ -8,4 +8,4 @@ dist/
 # Virtual environments
 .venv
 
-
+wheels/*

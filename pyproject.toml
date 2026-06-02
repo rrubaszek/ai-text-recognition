@@ -17,6 +17,7 @@ dependencies = [
 
 [tool.uv.sources]
 pl-core-news-sm = { path = "wheels/pl_core_news_sm-3.8.0-py3-none-any.whl" }
+pl-core-news-lg = { path = "wheels/pl_core_news_lg-3.8.0-py3-none-any.whl" }
 
 [tool.setuptools]
 package-dir = {"" = "src"}
