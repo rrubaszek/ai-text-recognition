@@ -52,7 +52,7 @@ def main():
     print("Classification report:")
     print(classification_report(y_test, y_pred))
 
-    shap_analysis_tree(model, X_train)
+    shap_analysis_tree(model, "xgboost", X_train)
 
 if __name__ == "__main__":
     main()

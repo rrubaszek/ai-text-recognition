@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 import shap
-from pathlib import Path
 
-def shap_analysis_tree(model, x_train):
+from utils.paths import SHAP_PLOTS_DIR
+
+def shap_analysis_tree(model, model_name, x_train):
     # Analiza SHAP
-    project_root = Path(__file__).resolve().parents[2]
-    plot_dir = project_root / "src" / "plots" / "xgb_model"
+    plot_dir = SHAP_PLOTS_DIR / model_name
     plot_dir.mkdir(parents=True, exist_ok=True)
 
     plot_path = plot_dir / "shap_values_mean.png"
