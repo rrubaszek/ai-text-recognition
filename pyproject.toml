@@ -5,13 +5,17 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "lightgbm>=4.6.0",
     "matplotlib>=3.10.9",
+    "networkx>=3.6.1",
     "numpy>=2.4.4",
+    "optuna>=4.9.0",
     "pandas>=3.0.2",
     "pl-core-news-sm",
     "scikit-learn>=1.8.0",
     "shap>=0.51.0",
     "spacy>=3.8.13",
+    "ts2vg>=1.2.4",
     "xgboost>=3.2.0",
 ]
 
