@@ -12,8 +12,8 @@ def _run_lodo_evaluation():
     evaluator.evaluate_all_models(verbose=True)
     evaluator.summary()
 
-def _optimize_model(X, y):
-    optimizer = OptunaOptimizer(ModelType.XGBOOST, n_trials=200)
+def _optimize_model(X, y, model_type: ModelType):
+    optimizer = OptunaOptimizer(model_type, n_trials=200)
     _ = optimizer.optimize(X, y)
     print(f"Best: {optimizer.get_best_params()}")
 
@@ -46,7 +46,7 @@ def run(run_cv: bool = False, optimize: bool = False, lodo: bool = False, shap: 
         
         if optimize:
             print(f"Running hyperparameter optimization for {model.get_model_name()} with optimize=True...")
-            _optimize_model(X, y)
+            _optimize_model(X, y, model_type)
         else:
             print(f"Skipping hyperparameter optimization for {model.get_model_name()}. To run optimization, use optimize=True.")
 
