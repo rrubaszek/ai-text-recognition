@@ -12,10 +12,15 @@ class DataManager:
     This class only loads the already-processed CSV output.
     """
     
-    def __init__(self, dataset_path: Path = None):
+    def __init__(self, dataset_path: Path = None, lemmatization_used: bool = True):
         if dataset_path is None:
             from utils.paths import STYLOMETRY_DATASET_DIR
-            dataset_path = STYLOMETRY_DATASET_DIR / "dataset.csv"
+            from utils.paths import STYLOMETRY_DATASET_DIR_WITHOUT_LEMMA
+
+            if lemmatization_used:
+                dataset_path = STYLOMETRY_DATASET_DIR / "dataset.csv"
+            else:
+                dataset_path = STYLOMETRY_DATASET_DIR_WITHOUT_LEMMA / "dataset.csv"
         
         self.dataset_path = Path(dataset_path)
         self._data = None

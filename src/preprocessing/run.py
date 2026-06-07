@@ -6,11 +6,16 @@ from preprocessing.dynamics import NonlinearDynamics
 from preprocessing.stylometry import ShallowStylometrics
 from preprocessing.zipf import ZipfFeatures
 from utils.load_data import load_data
-from utils.paths import STYLOMETRY_DATASET_DIR
+from utils.paths import STYLOMETRY_DATASET_DIR, STYLOMETRY_DATASET_DIR_WITHOUT_LEMMA
 
-def run(force: bool = False):
-    
-    output_file = STYLOMETRY_DATASET_DIR / "dataset.csv"
+
+def run(force: bool = False, use_lemmatization: bool = True):
+
+    if use_lemmatization:
+        output_file = STYLOMETRY_DATASET_DIR_WITHOUT_LEMMA / "dataset.csv"
+    else:
+      output_file = STYLOMETRY_DATASET_DIR / "dataset.csv"
+
     STYLOMETRY_DATASET_DIR.mkdir(parents=True, exist_ok=True)
     
     if output_file.exists() and not force:
@@ -27,7 +32,7 @@ def run(force: bool = False):
     pipeline = Pipeline([
         ("preprocess", SpacyTokenizer(
             model_name="pl_core_news_lg",
-            use_lemma=True,
+            use_lemma= use_lemmatization,
             remove_stopwords=False,
             remove_punct=False
         )),

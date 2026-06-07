@@ -3,9 +3,10 @@ import shap
 
 from shap.utils._exceptions import InvalidModelError
 
-from utils.paths import SHAP_PLOTS_DIR
+from utils.paths import SHAP_PLOTS_DIR, SHAP_PLOTS_DIR_WITHOUT_LEMMA
 
-def shap_analysis_tree(model, model_name, x_train):
+
+def shap_analysis_tree(model, model_name, x_train, lemmatization_used):
     # Analiza SHAP
     try:
         # TODO: RandomForest takes very long - for now do not use
@@ -17,8 +18,12 @@ def shap_analysis_tree(model, model_name, x_train):
     except InvalidModelError as e:
         print(f"Invalid SHAP analysis for {model_name}: {e}")
         return
-    
-    plot_dir = SHAP_PLOTS_DIR / model_name
+
+    if lemmatization_used:
+        plot_dir = SHAP_PLOTS_DIR / model_name
+    else:
+        plot_dir = SHAP_PLOTS_DIR_WITHOUT_LEMMA / model_name
+
     plot_dir.mkdir(parents=True, exist_ok=True)
 
     plot_path = plot_dir / "shap_values_mean.png"
