@@ -12,12 +12,13 @@ from utils.paths import STYLOMETRY_DATASET_DIR, STYLOMETRY_DATASET_DIR_WITHOUT_L
 def run(force: bool = False, use_lemmatization: bool = True):
 
     if use_lemmatization:
-        output_file = STYLOMETRY_DATASET_DIR_WITHOUT_LEMMA / "dataset.csv"
-    else:
-      output_file = STYLOMETRY_DATASET_DIR / "dataset.csv"
+        output_file = STYLOMETRY_DATASET_DIR / "dataset.csv"
+        STYLOMETRY_DATASET_DIR.mkdir(parents=True, exist_ok=True)
 
-    STYLOMETRY_DATASET_DIR.mkdir(parents=True, exist_ok=True)
-    
+    else:
+        output_file = STYLOMETRY_DATASET_DIR_WITHOUT_LEMMA / "dataset.csv"
+        STYLOMETRY_DATASET_DIR_WITHOUT_LEMMA.mkdir(parents=True, exist_ok=True)
+
     if output_file.exists() and not force:
         print(f"Output file {output_file} already exists. Use force=True to overwrite.")
         return
@@ -78,4 +79,4 @@ def run(force: bool = False, use_lemmatization: bool = True):
             writer.writerow(list(vec) + [label, "unknown", "unknown"])
 
 if __name__ == '__main__':
-    run(force=False)
+    run(force=False, use_lemmatization=False)

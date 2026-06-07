@@ -19,6 +19,8 @@ dependencies = [
     { name = "numpy" },
     { name = "optuna" },
     { name = "pandas" },
+    { name = "pl-core-news-lg" },
+    { name = "pl-core-news-sm" },
     { name = "scikit-learn" },
     { name = "shap" },
     { name = "spacy" },
@@ -34,6 +36,8 @@ requires-dist = [
     { name = "numpy", specifier = ">=2.4.4" },
     { name = "optuna", specifier = ">=4.9.0" },
     { name = "pandas", specifier = ">=3.0.2" },
+    { name = "pl-core-news-lg", path = "wheels/pl_core_news_lg-3.8.0-py3-none-any.whl" },
+    { name = "pl-core-news-sm", path = "wheels/pl_core_news_sm-3.8.0-py3-none-any.whl" },
     { name = "scikit-learn", specifier = ">=1.8.0" },
     { name = "shap", specifier = ">=0.51.0" },
     { name = "spacy", specifier = ">=3.8.13" },
@@ -797,6 +801,22 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/c9/e4/4b64a97d71b2a83158134abbb2f5bd3f8a2ea691361282f010998f339ec7/pillow-12.2.0-cp314-cp314t-win32.whl", hash = "sha256:6bb77b2dcb06b20f9f4b4a8454caa581cd4dd0643a08bacf821216a16d9c8354", size = 6482084, upload-time = "2026-04-01T14:45:47.568Z" },
     { url = "https://files.pythonhosted.org/packages/ba/13/306d275efd3a3453f72114b7431c877d10b1154014c1ebbedd067770d629/pillow-12.2.0-cp314-cp314t-win_amd64.whl", hash = "sha256:6562ace0d3fb5f20ed7290f1f929cae41b25ae29528f2af1722966a0a02e2aa1", size = 7225152, upload-time = "2026-04-01T14:45:50.032Z" },
     { url = "https://files.pythonhosted.org/packages/ff/6e/cf826fae916b8658848d7b9f38d88da6396895c676e8086fc0988073aaf8/pillow-12.2.0-cp314-cp314t-win_arm64.whl", hash = "sha256:aa88ccfe4e32d362816319ed727a004423aab09c5cea43c01a4b435643fa34eb", size = 2556579, upload-time = "2026-04-01T14:45:52.529Z" },
+]
+
+[[package]]
+name = "pl-core-news-lg"
+version = "3.8.0"
+source = { path = "wheels/pl_core_news_lg-3.8.0-py3-none-any.whl" }
+wheels = [
+    { filename = "pl_core_news_lg-3.8.0-py3-none-any.whl", hash = "sha256:3bc7296cd4d67fa9ee0904b25401b0e9a9a772d5c4756edf54143a2ff4c9dcc0" },
+]
+
+[[package]]
+name = "pl-core-news-sm"
+version = "3.8.0"
+source = { path = "wheels/pl_core_news_sm-3.8.0-py3-none-any.whl" }
+wheels = [
+    { filename = "pl_core_news_sm-3.8.0-py3-none-any.whl", hash = "sha256:9b536db854b0cdb9132a74f68b392b8112ab6030f971bb03282462362a940dbb" },
 ]
 
 [[package]]

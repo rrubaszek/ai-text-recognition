@@ -57,4 +57,4 @@ def run(run_cv: bool = False, optimize: bool = False, lodo: bool = False, shap: 
 
 
 if __name__ == '__main__':
-    run(run_cv=True, optimize=False, lodo=False, stylometric_only=False, shap=True)
+    run(run_cv=True, optimize=False, lodo=False, stylometric_only=False, shap=True, lemmatization_used=False)
