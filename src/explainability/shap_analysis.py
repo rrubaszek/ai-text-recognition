@@ -1,17 +1,27 @@
 import matplotlib.pyplot as plt
 import shap
 
+from shap.utils._exceptions import InvalidModelError
+
 from utils.paths import SHAP_PLOTS_DIR
 
 def shap_analysis_tree(model, model_name, x_train):
     # Analiza SHAP
+    try:
+        # TODO: RandomForest takes very long - for now do not use
+        if model_name not in ["XGBOOST", "LIGHTGBM"]:
+            raise InvalidModelError(f"SHAP analysis is only supported for tree-based models. {model_name} is not supported.")
+        explainer = shap.TreeExplainer(model.model)
+        x_train = x_train.sample(2000, random_state=42)
+        shap_values = explainer(x_train)
+    except InvalidModelError as e:
+        print(f"Invalid SHAP analysis for {model_name}: {e}")
+        return
+    
     plot_dir = SHAP_PLOTS_DIR / model_name
     plot_dir.mkdir(parents=True, exist_ok=True)
 
     plot_path = plot_dir / "shap_values_mean.png"
-
-    explainer = shap.TreeExplainer(model)
-    shap_values = explainer(x_train)
 
     plt.figure(figsize=(12, 6))
     shap.plots.bar(shap_values, show=False)
