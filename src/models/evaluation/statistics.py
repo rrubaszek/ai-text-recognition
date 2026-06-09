@@ -409,7 +409,7 @@ class StatisticalEvaluator:
                     "delta": 0.0, "direction": "tie",
                 }
             else:
-                stat, p = wilcoxon(full, partial)
+                stat, p = ttest_rel(full, partial, alternative="two-sided")
                 significant = p < self.alpha
                 result = {
                     "statistic": round(stat, 6),
