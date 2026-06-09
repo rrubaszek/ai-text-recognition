@@ -5,6 +5,7 @@ from models.cross_validator import CrossValidator
 from models.config import HYPERPARAMETER_SPACES
 from models.tuning.hpo_optimizer import OptunaOptimizer
 from models.evaluation.lodo import LODOEvaluator
+from models.evaluation.statistics import StatisticalEvaluator
 from explainability.shap_analysis import shap_analysis_tree
 
 def _run_lodo_evaluation():
@@ -18,8 +19,11 @@ def _optimize_model(X, y, model_type: ModelType):
     print(f"Best: {optimizer.get_best_params()}")
 
 def run(run_cv: bool = False, optimize: bool = False, lodo: bool = False, shap: bool = False):
-    dm = DataManager()
-    X, y = dm.load_data()
+    full_data = DataManager(dataset_path="dataset.csv")
+    # stylometry_data = DataManager(dataset_path="stylometry_dataset.csv")
+    
+    X, y = full_data.load_data()
+    # X_st, y_st = stylometry_data.load_data()
     
     if lodo:
         print("Running Leave-One-Domain-Out evaluation with lodo=True...")
@@ -28,6 +32,8 @@ def run(run_cv: bool = False, optimize: bool = False, lodo: bool = False, shap: 
     else:
         print("Skipping Leave-One-Domain-Out evaluation for all models. To run LODO evaluation, use lodo=True.")
 
+    cv_results = []
+    cv_st_results = []
     for model_type in [ModelType.XGBOOST, ModelType.LIGHTGBM, ModelType.LOGISTIC_REGRESSION, ModelType.RANDOM_FOREST]:
         model = ModelFactory.create(model_type, HYPERPARAMETER_SPACES[model_type.value]['default'])
         model.train(X, y)
@@ -39,8 +45,12 @@ def run(run_cv: bool = False, optimize: bool = False, lodo: bool = False, shap: 
         
         if run_cv:
             print(f"Running cross-validation for {model.get_model_name()} with run_cv=True...")
-            cv_results = CrossValidator.stratified_kfold(model, X, y)
-            CrossValidator.print_kfold_results(cv_results, model.get_model_name())
+            cv = CrossValidator.stratified_kfold(model, X, y)
+            # cv_st = CrossValidator.stratified_kfold(model, X_st, y_st)
+            CrossValidator.print_kfold_results(cv, model.get_model_name())
+            # CrossValidator.print_kfold_results(cv_st, model.get_model_name())
+            cv_results.append(cv)
+            # cv_st_results.append(cv_st)
         else:
             print(f"Skipping cross-validation for {model.get_model_name()}. To run cross-validation, use run_cv=True.")
         
@@ -50,6 +60,22 @@ def run(run_cv: bool = False, optimize: bool = False, lodo: bool = False, shap: 
         else:
             print(f"Skipping hyperparameter optimization for {model.get_model_name()}. To run optimization, use optimize=True.")
 
+    ev = StatisticalEvaluator(alpha=0.05, default_metric="test_roc_auc")
+
+    # cv_results from CrossValidator.stratified_kfold(...)
+    ev.compare_all(
+        cv_results,
+        model_names=[ModelType.XGBOOST.name, ModelType.LIGHTGBM.name, 
+                    ModelType.LOGISTIC_REGRESSION.name, ModelType.RANDOM_FOREST.name],
+        tests=("wilcoxon", "t_test"),   # pairwise
+        # Friedman + Nemenyi run automatically when ≥3 models
+    )
+    
+    # ev.compare_datasets(
+    #     cv_results,         
+    #     cv_partial_results,
+    #     model_names=list(ModelType),
+    # )
 
 if __name__ == '__main__':
     run(run_cv=True, optimize=False, lodo=False)

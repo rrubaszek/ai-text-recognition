@@ -3,6 +3,7 @@ from typing import Tuple
 import pandas as pd
 import numpy as np
 
+from utils.paths import STYLOMETRY_DATASET_DIR
 
 class DataManager:
     """
@@ -14,10 +15,9 @@ class DataManager:
     
     def __init__(self, dataset_path: Path = None):
         if dataset_path is None:
-            from utils.paths import STYLOMETRY_DATASET_DIR
             dataset_path = STYLOMETRY_DATASET_DIR / "dataset.csv"
         
-        self.dataset_path = Path(dataset_path)
+        self.dataset_path = Path(STYLOMETRY_DATASET_DIR / dataset_path)
         self._data = None
         self._X = None
         self._y = None

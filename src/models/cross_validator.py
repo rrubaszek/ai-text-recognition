@@ -1,10 +1,10 @@
-from typing import Dict, List, Tuple, Any, Optional
+from typing import Dict, List, Any
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold, cross_validate
 from sklearn.metrics import (
     accuracy_score, f1_score, roc_auc_score, 
-    matthews_corrcoef, classification_report
+    matthews_corrcoef
 )
 from models.base_model import BaseModel
 from models.config import EVALUATION_METRICS
@@ -69,8 +69,6 @@ class CrossValidator:
             'n_test_samples': []
         }
         
-
-        
         for test_domain in unique_domains:
             # Split into train/test by domain
             test_mask = (domains == test_domain)
@@ -103,7 +101,7 @@ class CrossValidator:
     @staticmethod
     def print_kfold_results(
         cv_results: Dict[str, np.ndarray],
-        model_name: str = "Model"
+        model_name: str
     ) -> None:
         """Pretty-print K-Fold CV results"""
         print(f"\n{'='*60}")
@@ -130,7 +128,7 @@ class CrossValidator:
         print(df_results.to_string(index=False))
         
         # Print summary
-        for metric in ['accuracy', 'f1_macro', 'roc_auc', 'mcc']:
+        for metric in EVALUATION_METRICS.keys: #['accuracy', 'f1_macro', 'roc_auc', 'mcc']:
             mean_val = np.mean(lodo_results[metric])
             std_val = np.std(lodo_results[metric])
             print(f"\n{metric.upper():15} | Mean: {mean_val:.4f} (±{std_val:.4f})")

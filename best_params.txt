@@ -1,0 +1,27 @@
+======================================================================
+  Optimization Complete: XGBOOST
+======================================================================
+Number of trials: 200
+Best ROC-AUC: 0.8621
+
+Best hyperparameters:
+  n_estimators              = 898
+  learning_rate             = 0.015734269405203786
+  max_depth                 = 15
+  min_child_weight          = 7
+  subsample                 = 0.7894939253356722
+  colsample_bytree          = 0.9828748511411806
+  gamma                     = 0
+  reg_lambda                = 9.924784197985092
+======================================================================
+
+Best: {
+    'n_estimators': 898, 
+    'learning_rate': 0.015734269405203786, 
+    'max_depth': 15, 
+    'min_child_weight': 7, 
+    'subsample': 0.7894939253356722, 
+    'colsample_bytree': 0.9828748511411806, 
+    'gamma': 0, 
+    'reg_lambda': 9.924784197985092
+}
