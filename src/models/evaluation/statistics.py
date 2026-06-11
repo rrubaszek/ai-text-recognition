@@ -2,7 +2,7 @@ import numpy as np
 import scikit_posthocs as sp
 
 from scipy import stats
-from scipy.stats import friedmanchisquare, ttest_rel, wilcoxon
+from scipy.stats import friedmanchisquare, ttest_rel, wilcoxon, shapiro
 from itertools import combinations
 from typing import Dict, List, Optional, Sequence
 
@@ -409,7 +409,17 @@ class StatisticalEvaluator:
                     "delta": 0.0, "direction": "tie",
                 }
             else:
-                stat, p = ttest_rel(full, partial, alternative="two-sided")
+                _, p_full = shapiro(x=full)
+                _, p_partial = shapiro(x=partial)
+
+                # Both samples must be normally distributed
+                if p_full >= self.alpha and p_partial >= self.alpha:
+                    print("Normal distribution of trial\n")
+                    stat, p = ttest_rel(full, partial, alternative="two-sided")
+                else:
+                    print("Not-normal distribution of trial\n")
+                    stat, p = wilcoxon(full, partial, alternative="two-sided")
+                
                 significant = p < self.alpha
                 result = {
                     "statistic": round(stat, 6),

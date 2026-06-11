@@ -1,0 +1,177 @@
+============================================================
+  XGBoost - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.7781 (±0.0014)
+F1_MACRO        | Mean: 0.7781 (±0.0014)
+MCC             | Mean: 0.5563 (±0.0027)
+ROC_AUC         | Mean: 0.8604 (±0.0024)
+============================================================
+
+============================================================
+  LightGBM - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.7728 (±0.0040)
+F1_MACRO        | Mean: 0.7728 (±0.0040)
+MCC             | Mean: 0.5458 (±0.0080)
+ROC_AUC         | Mean: 0.8541 (±0.0038)
+============================================================
+
+============================================================
+  LogisticRegression - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.5799 (±0.0036)
+F1_MACRO        | Mean: 0.5797 (±0.0038)
+MCC             | Mean: 0.1599 (±0.0070)
+ROC_AUC         | Mean: 0.6152 (±0.0063)
+============================================================
+
+============================================================
+  RandomForest - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.7627 (±0.0023)
+F1_MACRO        | Mean: 0.7627 (±0.0023)
+MCC             | Mean: 0.5254 (±0.0046)
+ROC_AUC         | Mean: 0.8432 (±0.0031)
+============================================================
+
+============================================================
+  XGBoost - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.7703 (±0.0025)
+F1_MACRO        | Mean: 0.7703 (±0.0025)
+MCC             | Mean: 0.5407 (±0.0050)
+ROC_AUC         | Mean: 0.8525 (±0.0014)
+============================================================
+
+============================================================
+  LightGBM - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.7657 (±0.0037)
+F1_MACRO        | Mean: 0.7656 (±0.0037)
+MCC             | Mean: 0.5317 (±0.0074)
+ROC_AUC         | Mean: 0.8474 (±0.0042)
+============================================================
+
+============================================================
+  LogisticRegression - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.5774 (±0.0038)
+F1_MACRO        | Mean: 0.5772 (±0.0037)
+MCC             | Mean: 0.1549 (±0.0077)
+ROC_AUC         | Mean: 0.6164 (±0.0068)
+============================================================
+
+============================================================
+  RandomForest - 5-Fold Cross-Validation Results
+============================================================
+ACCURACY        | Mean: 0.7601 (±0.0028)
+F1_MACRO        | Mean: 0.7601 (±0.0028)
+MCC             | Mean: 0.5202 (±0.0056)
+ROC_AUC         | Mean: 0.8404 (±0.0029)
+============================================================
+
+
+============================================================
+Pairwise statistical comparison (4 models)
+Metric: test_roc_auc o=0.05
+============================================================
+
+[Wilcoxon signed-rank] XGBOOST vs LIGHTGBM
+  statistic=0.0000  p=0.0625  not significant
+  mean scores: XGBOOST=0.8604  LIGHTGBM=0.8541  XGBOOST > LIGHTGBM
+
+[Paired t-test] XGBOOST vs LIGHTGBM
+  statistic=8.4825  p=0.0011  SIGNIFICANT 
+  mean scores: XGBOOST=0.8604  LIGHTGBM=0.8541  XGBOOST > LIGHTGBM
+
+[Wilcoxon signed-rank] XGBOOST vs LOGISTIC_REGRESSION
+  statistic=0.0000  p=0.0625  not significant
+  mean scores: XGBOOST=0.8604  LOGISTIC_REGRESSION=0.6152  XGBOOST > LOGISTIC_REGRESSION
+
+[Paired t-test] XGBOOST vs LOGISTIC_REGRESSION
+  statistic=66.0420  p=0.0000  SIGNIFICANT 
+  mean scores: XGBOOST=0.8604  LOGISTIC_REGRESSION=0.6152  XGBOOST > LOGISTIC_REGRESSION
+
+[Wilcoxon signed-rank] XGBOOST vs RANDOM_FOREST
+  statistic=0.0000  p=0.0625  not significant
+  mean scores: XGBOOST=0.8604  RANDOM_FOREST=0.8432  XGBOOST > RANDOM_FOREST
+
+[Paired t-test] XGBOOST vs RANDOM_FOREST
+  statistic=30.3411  p=0.0000  SIGNIFICANT 
+  mean scores: XGBOOST=0.8604  RANDOM_FOREST=0.8432  XGBOOST > RANDOM_FOREST
+
+[Wilcoxon signed-rank] LIGHTGBM vs LOGISTIC_REGRESSION
+  statistic=0.0000  p=0.0625  not significant
+  mean scores: LIGHTGBM=0.8541  LOGISTIC_REGRESSION=0.6152  LIGHTGBM > LOGISTIC_REGRESSION
+
+[Paired t-test] LIGHTGBM vs LOGISTIC_REGRESSION
+  statistic=57.1034  p=0.0000  SIGNIFICANT 
+  mean scores: LIGHTGBM=0.8541  LOGISTIC_REGRESSION=0.6152  LIGHTGBM > LOGISTIC_REGRESSION
+
+[Wilcoxon signed-rank] LIGHTGBM vs RANDOM_FOREST
+  statistic=0.0000  p=0.0625  not significant
+  mean scores: LIGHTGBM=0.8541  RANDOM_FOREST=0.8432  LIGHTGBM > RANDOM_FOREST
+
+[Paired t-test] LIGHTGBM vs RANDOM_FOREST
+  statistic=12.0193  p=0.0003  SIGNIFICANT 
+  mean scores: LIGHTGBM=0.8541  RANDOM_FOREST=0.8432  LIGHTGBM > RANDOM_FOREST
+
+[Wilcoxon signed-rank] LOGISTIC_REGRESSION vs RANDOM_FOREST
+  statistic=0.0000  p=0.0625  not significant
+  mean scores: LOGISTIC_REGRESSION=0.6152  RANDOM_FOREST=0.8432  RANDOM_FOREST > LOGISTIC_REGRESSION
+
+[Paired t-test] LOGISTIC_REGRESSION vs RANDOM_FOREST
+  statistic=-59.0281  p=0.0000  SIGNIFICANT 
+  mean scores: LOGISTIC_REGRESSION=0.6152  RANDOM_FOREST=0.8432  RANDOM_FOREST > LOGISTIC_REGRESSION
+
+[Friedman] 4 models over 5 folds
+  models: ['XGBOOST', 'LIGHTGBM', 'LOGISTIC_REGRESSION', 'RANDOM_FOREST']
+  statistic=15.0000  p=0.0018  SIGNIFICANT (run post-hoc Nemenyi)
+    XGBOOST: mean=0.8604  std=0.0024
+    LIGHTGBM: mean=0.8541  std=0.0038
+    LOGISTIC_REGRESSION: mean=0.6152  std=0.0063
+    RANDOM_FOREST: mean=0.8432  std=0.0031
+
+[Nemenyi post-hoc] pairwise comparisons (o=0.05)
+  not significant
+  SIGNIFICANT
+  not significant
+  not significant
+  not significant
+  not significant
+
+============================================================
+Dataset comparison: full vs partial features
+Metric: test_roc_auc   o=0.05
+============================================================
+
+Normal distribution of trial
+[XGBOOST] full vs partial
+  full=0.8604  partial=0.8525  delta=+0.0079  (full > partial)
+  statistic=10.9323     p=0.0004  SIGNIFICANT
+
+Normal distribution of trial
+[LIGHTGBM] full vs partial
+  full=0.8541  partial=0.8474  delta=+0.0067  (full > partial)
+  statistic=6.0697     p=0.0037  SIGNIFICANT
+
+Not-normal distribution of trial
+[LOGISTIC_REGRESSION] full vs partial
+  full=0.6152  partial=0.6164  delta=-0.0012  (partial > full)
+  statistic=5.0000     p=0.6250  not significant
+  
+Normal distribution of trial
+[RANDOM_FOREST] full vs partial
+  full=0.8432  partial=0.8404  delta=+0.0029  (full > partial)
+  statistic=2.3526     p=0.0783  not significant
+
+============================================================
+  Summary
+============================================================
+  Model                         Full  Partial    delta   Sig
+  -------------------------------------------------------
+  XGBOOST                     0.8604   0.8525  +0.0079
+  LIGHTGBM                    0.8541   0.8474  +0.0067
+  LOGISTIC_REGRESSION         0.6152   0.6164  -0.0012
+  RANDOM_FOREST               0.8432   0.8404  +0.0029
+============================================================
