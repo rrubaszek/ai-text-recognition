@@ -32,14 +32,14 @@ STYLOMETRIC_FEATURES = [
 HYPERPARAMETER_SPACES = {
     'xgboost': {
         'default': {
-            'n_estimators': 200,
-            'learning_rate': 0.1,
-            'max_depth': 6,
-            'min_child_weight': 1,
-            'subsample': 0.8,
-            'colsample_bytree': 0.8,
+            'n_estimators': 898,
+            'learning_rate': 0.015734269405203786,
+            'max_depth': 15,
+            'min_child_weight': 7,
+            'subsample': 0.7894939253356722,
+            'colsample_bytree': 0.9828748511411806,
             'gamma': 0,
-            'reg_lambda': 1,
+            'reg_lambda': 9.924784197985092,
             'reg_alpha': 0,
             'random_state': 42,
         },
